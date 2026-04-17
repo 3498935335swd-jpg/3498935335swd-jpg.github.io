@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>思渊 · 哲学深潜</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-bg {
+      background: linear-gradient(145deg, #f8fafc 0%, #eef2ff 100%);
+    }
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- 导航栏 -->
+  <nav class="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-2">
+          <i class="fas fa-brain text-indigo-600 text-2xl"></i>
+          <span class="font-bold text-xl tracking-tight">思渊<span class="text-indigo-600">·深潜</span></span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium">
+          <a href=" " class="text-indigo-600 border-b-2 border-indigo-600 pb-1">首页</a >
+          <a href="#" class="text-slate-600 hover:text-slate-900 transition">经典</a >
+          <a href="#" class="text-slate-600 hover:text-slate-900 transition">思维工具</a >
+          <a href="#" class="text-slate-600 hover:text-slate-900 transition">路径</a >
+        </div>
+        <div>
+          <button class="bg-indigo-50 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-100 transition">
+            开始探索
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主视觉 -->
+  <section class="gradient-bg border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
+          用<span class="text-indigo-600">深度思考</span>对抗浅薄
+        </h1>
+        <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+          从苏格拉底到维特根斯坦，从形而上学到心灵哲学 —— 
+          这里没有速成鸡汤，只有严谨的论证与清晰的概念地图。
+        </p >
+        <div class="flex flex-wrap justify-center gap-4">
+          <button class="bg-indigo-600 text-white px-6 py-3 rounded-full text-base font-medium shadow-md hover:bg-indigo-700 transition flex items-center gap-2">
+            <i class="fas fa-compass"></i> 查看学习路径
+          </button>
+          <button class="bg-white border border-slate-300 text-slate-700 px-6 py-3 rounded-full text-base font-medium hover:bg-slate-50 transition flex items-center gap-2">
+            <i class="fas fa-book-open"></i> 经典导读
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 哲学三大领域 -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900">哲学的核心领域</h2>
+        <p class="text-slate-500 mt-2">从三个基本问题出发，建立你的思考框架</p >
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 形而上学 -->
+        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 card-hover">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-700 rounded-xl flex items-center justify-center mb-5">
+            <i class="fas fa-globe text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">形而上学</h3>
+          <p class="text-slate-600 mb-4 text-sm leading-relaxed">存在是什么？实在的结构如何？自由意志是否可能？</p >
+          <div class="text-xs text-indigo-600 font-medium flex items-center gap-1">
+            <span>经典问题：忒修斯之船</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        <!-- 认识论 -->
+        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 card-hover">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center mb-5">
+            <i class="fas fa-lightbulb text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">认识论</h3>
+          <p class="text-slate-600 mb-4 text-sm leading-relaxed">我们如何知道？知识的边界在哪？信念如何被证成？</p >
+          <div class="text-xs text-emerald-600 font-medium flex items-center gap-1">
+            <span>思想实验：盖梯尔问题</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+        <!-- 伦理学 -->
+        <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 card-hover">
+          <div class="w-12 h-12 bg-amber-100 text-amber-700 rounded-xl flex items-center justify-center mb-5">
+            <i class="fas fa-scale-balanced text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">伦理学</h3>
+          <p class="text-slate-600 mb-4 text-sm leading-relaxed">我们应该如何生活？对错的标准是什么？</p >
+          <div class="text-xs text-amber-600 font-medium flex items-center gap-1">
+            <span>思想实验：电车难题</span>
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 经典研读 + 哲学地图时间线 -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- 左侧：推荐原著 -->
+        <div class="md:w-1/2">
+          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <i class="fas fa-scroll text-indigo-500"></i> 必读经典
+          </h2>
+          <div class="space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 flex gap-4 items-start">
+              <span class="bg-indigo-50 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
+              <div>
+                <h4 class="font-semibold">《理想国》· 柏拉图</h4>
+                <p class="text-sm text-slate-500 mt-1">洞穴喻、灵魂三分、哲人王 —— 西方哲学总注解。</p >
+              </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 flex gap-4 items-start">
+              <span class="bg-indigo-50 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
+              <div>
+                <h4 class="font-semibold">《第一哲学沉思集》· 笛卡尔</h4>
+                <p class="text-sm text-slate-500 mt-1">“我思故我在”与普遍怀疑的方法。</p >
+              </div>
+            </div>
+            <div class="bg-white p-5 rounded-xl border border-slate-200 flex gap-4 items-start">
+              <span class="bg-indigo-50 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
+              <div>
+                <h4 class="font-semibold">《纯粹理性批判》· 康德</h4>
+                <p class="text-sm text-slate-500 mt-1">哥白尼式革命：人为自然立法。</p >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 右侧：哲学史时间线（简化） -->
+        <div class="md:w-1/2">
+          <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+            <i class="fas fa-timeline text-indigo-500"></i> 思想脉络
+          </h2>
+          <div class="relative border-l-2 border-indigo-200 pl-6 ml-3 space-y-6">
+            <div class="relative">
+              <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[34px] border-4 border-white"></div>
+              <p class="text-sm font-semibold text-indigo-700">古代 · 前6世纪 – 5世纪</p >
+              <p class="text-slate-700">苏格拉底 · 柏拉图 · 亚里士多德</p >
+            </div>
+            <div class="relative">
+              <div class="absolute w-4 h-4 bg-indigo-300 rounded-full -left-[34px] border-4 border-white"></div>
+              <p class="text-sm font-semibold text-indigo-700">中世纪 · 5世纪 – 15世纪</p >
+              <p class="text-slate-700">奥古斯丁 · 阿奎那 · 奥卡姆</p >
+            </div>
+            <div class="relative">
+              <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[34px] border-4 border-white"></div>
+              <p class="text-sm font-semibold text-indigo-700">近代 · 17世纪 – 18世纪</p >
+              <p class="text-slate-700">笛卡尔 · 斯宾诺莎 · 莱布尼茨 · 休谟 · 康德</p >
+            </div>
+            <div class="relative">
+              <div class="absolute w-4 h-4 bg-indigo-500 rounded-full -left-[34px] border-4 border-white"></div>
+              <p class="text-sm font-semibold text-indigo-700">19世纪 – 20世纪</p >
+              <p class="text-slate-700">黑格尔 · 尼采 · 维特根斯坦 · 海德格尔 · 萨特</p >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 思维工具箱 -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900">论证与思维工具</h2>
+        <p class="text-slate-500 mt-2">哲学不仅是知识，更是一套思考的方法</p >
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <i class="fas fa-exclamation-triangle text-amber-500 text-xl mb-2"></i>
+          <p class="font-medium">逻辑谬误手册</p >
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <i class="fas fa-flask text-indigo-500 text-xl mb-2"></i>
+          <p class="font-medium">思想实验库</p >
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <i class="fas fa-sitemap text-emerald-500 text-xl mb-2"></i>
+          <p class="font-medium">论证结构图</p >
+        </div>
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+          <i class="fas fa-book text-rose-500 text-xl mb-2"></i>
+          <p class="font-medium">概念辨析</p >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="border-t border-slate-200 py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500">
+      <p>© 2026 思渊 · 哲学深潜 — 保持怀疑，持续追问</p >
+      <p class="mt-2 text-xs">一个开源哲学学习项目 · 所有内容遵循 CC BY-NC 4.0</p >
+    </div>
+  </footer>
+
+</body>
+</html>

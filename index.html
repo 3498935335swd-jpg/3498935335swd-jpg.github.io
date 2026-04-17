@@ -9,204 +9,210 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
+
     body {
-      font-family: system-ui, sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-      line-height: 1.6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #0f1014;
+      color: #eaeaea;
+      line-height: 1.7;
     }
+
     a {
       text-decoration: none;
+      color: inherit;
     }
+
+    /* 导航 */
     nav {
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
+      background: rgba(15, 16, 20, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #2a2b2f;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 99;
     }
+
     .container {
-      max-width: 1280px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 22px;
     }
+
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 64px;
+      height: 66px;
     }
+
     .logo {
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 22px;
+      font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
     }
+
     .logo span {
-      color: #4f46e5;
+      color: #a855f7;
     }
+
     .nav-links {
       display: flex;
-      gap: 24px;
-      font-size: 14px;
-    }
-    .nav-links a {
-      color: #64748b;
-    }
-    .nav-links a.active {
-      color: #4f46e5;
+      gap: 28px;
+      font-size: 16px;
       font-weight: 500;
     }
+
+    .nav-links a {
+      color: #b0b0b8;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a.active {
+      color: #a855f7;
+    }
+
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #a855f7;
+      border-radius: 1px;
+    }
+
+    /* 英雄区 */
     .hero {
-      background: linear-gradient(145deg, #f8fafc 0%, #eef2ff 100%);
-      padding: 80px 20px;
+      background: linear-gradient(160deg, #111218 0%, #1e1b4b 100%);
+      padding: 100px 0 110px;
       text-align: center;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid #2a2b2f;
     }
+
     .hero h1 {
-      font-size: 36px;
-      margin-bottom: 16px;
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
+
     .hero h1 span {
-      color: #4f46e5;
+      color: #a855f7;
     }
+
     .hero p {
-      color: #64748b;
-      max-width: 700px;
-      margin: 0 auto 32px;
+      font-size: 18px;
+      color: #90929a;
+      max-width: 680px;
+      margin: 0 auto 36px;
     }
+
     .buttons {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
+
     .btn {
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-weight: 500;
-      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
       cursor: pointer;
+      transition: all 0.18s ease;
+      border: none;
     }
+
     .btn.primary {
-      background: #4f46e5;
-      color: white;
+      background: #9333ea;
+      color: #fff;
     }
+
     .btn.secondary {
-      background: white;
-      border: 1px solid #cbd5e1;
-      color: #334155;
+      background: #1f2028;
+      border: 1px solid #3b3c44;
+      color: #eaeaea;
     }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0px);
+    }
+
+    /* 区块通用 */
     .section {
-      padding: 60px 0;
+      padding: 80px 0;
+      border-bottom: 1px solid #1f2028;
     }
-    .section-white {
-      background: white;
-    }
-    .section-gray {
-      background: #f8fafc;
-    }
+
     .section-title {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 44px;
     }
+
     .section-title h2 {
-      font-size: 28px;
-      margin-bottom: 8px;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
+
     .section-title p {
-      color: #64748b;
+      color: #888a94;
+      font-size: 16px;
     }
+
+    /* 卡片网格 */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
     }
+
     .card {
-      background: #f8fafc;
-      padding: 24px;
+      background: #17181f;
+      padding: 26px;
       border-radius: 16px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid #27282f;
+      transition: all 0.22s ease;
     }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #9333ea;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
     .card h3 {
-      margin: 16px 0 8px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
+
     .card p {
-      color: #64748b;
-      font-size: 14px;
+      color: #999aa5;
+      font-size: 15px;
     }
-    .flex-row {
-      display: flex;
-      gap: 32px;
-    }
-    .flex-1 {
-      flex: 1;
-    }
-    .book-item {
-      background: white;
-      padding: 16px;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .book-num {
-      width: 32px;
-      height: 32px;
-      background: #eef2ff;
-      color: #4f46e5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-    .timeline {
-      border-left: 2px solid #ddd;
-      padding-left: 20px;
-      margin-left: 8px;
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 20px;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -28px;
-      top: 4px;
-      width: 12px;
-      height: 12px;
-      background: #4f46e5;
-      border-radius: 50%;
-    }
-    .timeline-date {
-      color: #4f46e5;
-      font-weight: 500;
-      font-size: 13px;
-    }
-    .tools {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      text-align: center;
-    }
-    .tool {
-      padding: 16px;
-      background: #f8fafc;
-      border-radius: 12px;
-      border: 1px solid #e2e8f0;
-    }
+
+    /* 页脚 */
     footer {
-      border-top: 1px solid #e2e8f0;
-      padding: 32px 20px;
+      padding: 40px 20px;
       text-align: center;
-      background: white;
-      color: #64748b;
       font-size: 14px;
+      color: #666874;
     }
   </style>
 </head>
@@ -218,124 +224,106 @@
     <div class="nav-inner">
       <div class="logo">思渊<span>·深潜</span></div>
       <div class="nav-links">
-        <a class="active">首页</a >
-        <a>经典</a >
-        <a>思维工具</a >
-        <a>路径</a >
+        <a href=" " class="active">首页</a >
+        <a href="#classic">经典</a >
+        <a href="#tools">思维工具</a >
+        <a href="#path">思想路径</a >
       </div>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<section id="home" class="hero">
   <div class="container">
     <h1>用<span>深度思考</span>对抗浅薄</h1>
     <p>从苏格拉底到维特根斯坦，从形而上学到心灵哲学 ——
 这里没有速成鸡汤，只有严谨的论证与清晰的概念地图。</p >
     <div class="buttons">
-      <button class="btn primary">查看学习路径</button>
-      <button class="btn secondary">经典导读</button>
+      <a href="#path" class="btn primary">学习路径</a >
+      <a href="#classic" class="btn secondary">经典导读</a >
     </div>
   </div>
 </section>
 
-<section class="section section-white">
+<section id="classic" class="section">
   <div class="container">
     <div class="section-title">
-      <h2>哲学的核心领域</h2>
+      <h2>哲学核心领域</h2>
       <p>从三个基本问题出发，建立你的思考框架</p >
     </div>
     <div class="grid">
       <div class="card">
         <h3>形而上学</h3>
         <p>存在是什么？实在的结构如何？自由意志是否可能？</p >
-        <small>经典问题：忒修斯之船</small>
       </div>
       <div class="card">
         <h3>认识论</h3>
         <p>我们如何知道？知识的边界在哪？信念如何被证成？</p >
-        <small>思想实验：盖梯尔问题</small>
       </div>
       <div class="card">
         <h3>伦理学</h3>
         <p>我们应该如何生活？对错的标准是什么？</p >
-        <small>思想实验：电车难题</small>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-gray">
-  <div class="container">
-    <div class="flex-row">
-      <div class="flex-1">
-        <h2>必读经典</h2>
-        <div class="book-item">
-          <div class="book-num">1</div>
-          <div>
-            <strong>《理想国》· 柏拉图</strong>
-            <p>洞穴喻、灵魂三分、哲人王 —— 西方哲学总注解。</p >
-          </div>
-        </div>
-        <div class="book-item">
-          <div class="book-num">2</div>
-          <div>
-            <strong>《第一哲学沉思集》· 笛卡尔</strong>
-            <p>“我思故我在”与普遍怀疑的方法。</p >
-          </div>
-        </div>
-        <div class="book-item">
-          <div class="book-num">3</div>
-          <div>
-            <strong>《纯粹理性批判》· 康德</strong>
-            <p>哥白尼式革命：人为自然立法。</p >
-          </div>
-        </div>
-      </div>
-
-      <div class="flex-1">
-        <h2>思想脉络</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">古代 · 前6世纪 – 5世纪</div>
-            <div>苏格拉底 · 柏拉图 · 亚里士多德</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">中世纪 · 5世纪 – 15世纪</div>
-            <div>奥古斯丁 · 阿奎那 · 奥卡姆</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">近代 · 17世纪 – 18世纪</div>
-            <div>笛卡尔 · 斯宾诺莎 · 莱布尼茨 · 休谟 · 康德</div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">19世纪 – 20世纪</div>
-            <div>黑格尔 · 尼采 · 维特根斯坦 · 海德格尔 · 萨特</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-white">
+<section id="tools" class="section">
   <div class="container">
     <div class="section-title">
-      <h2>论证与思维工具</h2>
-      <p>哲学不仅是知识，更是一套思考的方法</p >
+      <h2>思维工具库</h2>
+      <p>哲学不仅是知识，更是一套思考方法</p >
     </div>
-    <div class="tools">
-      <div class="tool">逻辑谬误手册</div>
-      <div class="tool">思想实验库</div>
-      <div class="tool">论证结构图</div>
-      <div class="tool">概念辨析</div>
+    <div class="grid">
+      <div class="card">
+        <h3>逻辑谬误手册</h3>
+        <p>识别常见逻辑陷阱，让思考更严谨</p >
+      </div>
+      <div class="card">
+        <h3>思想实验库</h3>
+        <p>用极端情境锤炼判断力</p >
+      </div>
+      <div class="card">
+        <h3>论证结构图</h3>
+        <p>把观点拆成前提、推论、结论</p >
+      </div>
+      <div class="card">
+        <h3>概念辨析</h3>
+        <p>清晰定义，是思考的第一步</p >
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="path" class="section">
+  <div class="container">
+    <div class="section-title">
+      <h2>思想脉络</h2>
+      <p>从古代到现代，哲学思想的演变路径</p >
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>古希腊 · 古典时代</h3>
+        <p>苏格拉底、柏拉图、亚里士多德</p >
+      </div>
+      <div class="card">
+        <h3>中世纪 · 经院哲学</h3>
+        <p>奥古斯丁、阿奎那、奥卡姆</p >
+      </div>
+      <div class="card">
+        <h3>近代 · 理性与启蒙</h3>
+        <p>笛卡尔、休谟、康德、黑格尔</p >
+      </div>
+      <div class="card">
+        <h3>现代 · 语言与存在</h3>
+        <p>尼采、维特根斯坦、海德格尔、萨特</p >
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 思渊 · 哲学深潜 — 保持怀疑，持续追问</p >
-  <p>一个开源哲学学习项目</p >
 </footer>
 
 </body>

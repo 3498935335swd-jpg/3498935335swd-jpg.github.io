@@ -1,222 +1,308 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>思渊 · 哲学深潜</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>思渊 · 哲学深潜</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background: #0f1014;
+  color: #eaeaea;
+  line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+}
+body.light {
+  background: #f8fafc;
+  color: #1e293b;
+}
+a { text-decoration: none; color: inherit; }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #0f1014;
-      color: #eaeaea;
-      line-height: 1.7;
-    }
+nav {
+  background: rgba(15,16,20,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #2a2b2f;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+body.light nav {
+  background: rgba(255,255,255,0.92);
+  border-bottom: 1px solid #e2e8f0;
+}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 66px;
+}
+.logo { font-size: 22px; font-weight: 700; }
+.logo span { color: #a855f7; }
+.nav-links { display: flex; gap: 24px; font-size: 16px; }
+.nav-links a { position: relative; padding: 6px 0; }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #a855f7;
+  transition: width 0.2s;
+}
+.nav-links a.active::after,
+.nav-links a:hover::after { width: 100%; }
 
-    /* 导航 */
-    nav {
-      background: rgba(15, 16, 20, 0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #2a2b2f;
-      position: sticky;
-      top: 0;
-      z-index: 99;
-    }
+.bar {
+  margin: 20px auto;
+  max-width: 700px;
+  display: flex;
+  gap: 12px;
+}
+.bar input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: #17181f;
+  color: #fff;
+  font-size: 16px;
+}
+body.light .bar input {
+  background: #fff;
+  color: #111;
+  border-color: #ddd;
+}
+.bar button {
+  padding: 0 18px;
+  border-radius: 12px;
+  background: #9333ea;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 22px;
-    }
+.hero {
+  background: linear-gradient(160deg, #111218 0%, #1e1b4b 100%);
+  padding: 80px 0 90px;
+  text-align: center;
+}
+body.light .hero {
+  background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 100%);
+}
+.hero h1 { font-size: 38px; font-weight: 800; margin-bottom: 20px; }
+.hero h1 span { color: #a855f7; }
+.hero p { max-width: 680px; margin: 0 auto 30px; opacity: 0.8; }
+.buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.btn.primary { background: #9333ea; color: #fff; }
+.btn.secondary { background: #1f2937; color: #eaeaea; }
+body.light .btn.secondary { background: #e2e8f0; color: #111; }
+.btn:hover { transform: translateY(-2px); }
 
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 66px;
-    }
+.section { padding: 60px 0; border-bottom: 1px solid #1f2028; }
+body.light .section { border-color: #e2e8f0; }
+.section-title { text-align: center; margin-bottom: 30px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+.card {
+  background: #17181f;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #27282f;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+body.light .card {
+  background: #fff;
+  border-color: #e2e8f0;
+}
+.card:hover { transform: translateY(-4px); border-color: #a855f7; }
+.card h3 { margin-bottom: 10px; }
+.card .more {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #a855f7;
+  display: none;
+}
+.card.active .more { display: block; }
+.fav {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
 
-    .logo span {
-      color: #a855f7;
-    }
+.book-item {
+  background: #17181f;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  position: relative;
+}
+body.light .book-item { background: #fff; }
 
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 16px;
-      font-weight: 500;
-    }
+.timeline {
+  border-left: 2px solid #333;
+  padding-left: 20px;
+  margin-left: 8px;
+}
+body.light .timeline { border-color: #ddd; }
+.timeline-item { margin-bottom: 20px; position: relative; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: #a855f7;
+  border-radius: 50%;
+}
+.timeline-date { color: #a855f7; font-weight: 600; }
 
-    .nav-links a {
-      color: #b0b0b8;
-      position: relative;
-      transition: color 0.2s;
-    }
+/* AI 聊天 */
+.chat {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  z-index: 98;
+}
+.chat-box {
+  width: 320px;
+  max-height: 400px;
+  background: #17181f;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  display: none;
+  overflow-y: auto;
+}
+body.light .chat-box {
+  background: #fff;
+}
+.chat-box.show { display: block; }
+.msg {
+  margin: 8px 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 85%;
+}
+.bot {
+  background: #27282f;
+  margin-right: auto;
+}
+.user {
+  background: #9333ea;
+  margin-left: auto;
+}
+.chat-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  background: #1f2937;
+  color: #fff;
+  border: none;
+}
+body.light .chat-input input {
+  background: #f1f5f9;
+  color: #111;
+}
+.chat-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #9333ea;
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+}
 
-    .nav-links a:hover {
-      color: #ffffff;
-    }
+/* 进度 */
+.progress {
+  margin: 20px auto;
+  max-width: 700px;
+}
+.progress-bar {
+  height: 6px;
+  background: #27282f;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: #a855f7;
+  width: 0%;
+  transition: width 0.3s;
+}
 
-    .nav-links a.active {
-      color: #a855f7;
-    }
+#toTop {
+  position: fixed;
+  bottom: 24px;
+  right: 84px;
+  width: 44px;
+  height: 44px;
+  background: #333;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#toTop.show { opacity: 1; pointer-events: auto; }
+body.light #toTop { background: #e2e8f0; color: #111; }
 
-    .nav-links a.active::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #a855f7;
-      border-radius: 1px;
-    }
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: inherit;
+}
 
-    /* 英雄区 */
-    .hero {
-      background: linear-gradient(160deg, #111218 0%, #1e1b4b 100%);
-      padding: 100px 0 110px;
-      text-align: center;
-      border-bottom: 1px solid #2a2b2f;
-    }
-
-    .hero h1 {
-      font-size: 42px;
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .hero h1 span {
-      color: #a855f7;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #90929a;
-      max-width: 680px;
-      margin: 0 auto 36px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 32px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      border: none;
-    }
-
-    .btn.primary {
-      background: #9333ea;
-      color: #fff;
-    }
-
-    .btn.secondary {
-      background: #1f2028;
-      border: 1px solid #3b3c44;
-      color: #eaeaea;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn:active {
-      transform: translateY(0px);
-    }
-
-    /* 区块通用 */
-    .section {
-      padding: 80px 0;
-      border-bottom: 1px solid #1f2028;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 44px;
-    }
-
-    .section-title h2 {
-      font-size: 30px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .section-title p {
-      color: #888a94;
-      font-size: 16px;
-    }
-
-    /* 卡片网格 */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .card {
-      background: #17181f;
-      padding: 26px;
-      border-radius: 16px;
-      border: 1px solid #27282f;
-      transition: all 0.22s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: #9333ea;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #999aa5;
-      font-size: 15px;
-    }
-
-    /* 页脚 */
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #666874;
-    }
-  </style>
+footer {
+  padding: 30px 20px;
+  text-align: center;
+  opacity: 0.6;
+}
+</style>
 </head>
-
 <body>
 
 <nav>
@@ -224,45 +310,87 @@
     <div class="nav-inner">
       <div class="logo">思渊<span>·深潜</span></div>
       <div class="nav-links">
-        <a href=" " class="active">首页</a >
-        <a href="#classic">经典</a >
-        <a href="#tools">思维工具</a >
-        <a href="#path">思想路径</a >
+        <a href=" " class="nav-item active">首页</a >
+        <a href="#classic" class="nav-item">领域</a >
+        <a href="#books" class="nav-item">经典</a >
+        <a href="#tools" class="nav-item">工具</a >
+        <a href="#path" class="nav-item">脉络</a >
       </div>
+      <button id="themeToggle">🌙</button>
     </div>
   </div>
 </nav>
 
+<div class="container">
+  <div class="bar">
+    <input type="text" id="search" placeholder="搜索哲学概念、人物、问题…">
+    <button id="showFav">收藏</button>
+  </div>
+
+  <div class="progress">
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+      <span>学习进度</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+  </div>
+</div>
+
 <section id="home" class="hero">
   <div class="container">
     <h1>用<span>深度思考</span>对抗浅薄</h1>
-    <p>从苏格拉底到维特根斯坦，从形而上学到心灵哲学 ——
-这里没有速成鸡汤，只有严谨的论证与清晰的概念地图。</p >
+    <p>从苏格拉底到维特根斯坦，从形而上学到心灵哲学 —— 这里没有速成鸡汤，只有严谨论证与清晰地图。</p >
     <div class="buttons">
       <a href="#path" class="btn primary">学习路径</a >
-      <a href="#classic" class="btn secondary">经典导读</a >
+      <a href="#books" class="btn secondary">经典导读</a >
     </div>
   </div>
 </section>
 
 <section id="classic" class="section">
   <div class="container">
-    <div class="section-title">
-      <h2>哲学核心领域</h2>
-      <p>从三个基本问题出发，建立你的思考框架</p >
-    </div>
-    <div class="grid">
-      <div class="card">
+    <div class="section-title"><h2>哲学核心领域</h2></div>
+    <div class="grid" id="areaList">
+      <div class="card" onclick="toggle(this,'area1')">
+        <div class="fav" onclick="fav(event,'area1')">⭐</div>
         <h3>形而上学</h3>
-        <p>存在是什么？实在的结构如何？自由意志是否可能？</p >
+        <p>存在是什么？实在结构如何？</p >
+        <div class="more">本原、因果、时空、自由意志、实体</div>
       </div>
-      <div class="card">
+      <div class="card" onclick="toggle(this,'area2')">
+        <div class="fav" onclick="fav(event,'area2')">⭐</div>
         <h3>认识论</h3>
-        <p>我们如何知道？知识的边界在哪？信念如何被证成？</p >
+        <p>我们如何知道？知识边界在哪？</p >
+        <div class="more">怀疑论、先验/经验、盖梯尔、证成</div>
       </div>
-      <div class="card">
+      <div class="card" onclick="toggle(this,'area3')">
+        <div class="fav" onclick="fav(event,'area3')">⭐</div>
         <h3>伦理学</h3>
-        <p>我们应该如何生活？对错的标准是什么？</p >
+        <p>应该如何生活？对错标准是什么？</p >
+        <div class="more">功利主义、义务论、德性、电车难题</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="books" class="section">
+  <div class="container">
+    <div class="section-title"><h2>必读经典</h2></div>
+    <div id="bookList">
+      <div class="book-item" onclick="read('book1')">
+        <div class="fav" onclick="fav(event,'book1')">⭐</div>
+        <strong>《理想国》柏拉图</strong>
+        <p>洞穴喻、灵魂三分、哲人王</p >
+      </div>
+      <div class="book-item" onclick="read('book2')">
+        <div class="fav" onclick="fav(event,'book2')">⭐</div>
+        <strong>《第一哲学沉思集》笛卡尔</strong>
+        <p>我思故我在、普遍怀疑</p >
+      </div>
+      <div class="book-item" onclick="read('book3')">
+        <div class="fav" onclick="fav(event,'book3')">⭐</div>
+        <strong>《纯粹理性批判》康德</strong>
+        <p>人为自然立法、范畴体系</p >
       </div>
     </div>
   </div>
@@ -270,26 +398,27 @@
 
 <section id="tools" class="section">
   <div class="container">
-    <div class="section-title">
-      <h2>思维工具库</h2>
-      <p>哲学不仅是知识，更是一套思考方法</p >
-    </div>
-    <div class="grid">
-      <div class="card">
-        <h3>逻辑谬误手册</h3>
-        <p>识别常见逻辑陷阱，让思考更严谨</p >
+    <div class="section-title"><h2>思维工具</h2></div>
+    <div class="grid" id="toolList">
+      <div class="card" onclick="toggle(this,'tool1')">
+        <div class="fav" onclick="fav(event,'tool1')">⭐</div>
+        <h3>逻辑谬误</h3>
+        <div class="more">稻草人、循环论证、假二分、人身攻击</div>
       </div>
-      <div class="card">
-        <h3>思想实验库</h3>
-        <p>用极端情境锤炼判断力</p >
+      <div class="card" onclick="toggle(this,'tool2')">
+        <div class="fav" onclick="fav(event,'tool2')">⭐</div>
+        <h3>思想实验</h3>
+        <div class="more">中文屋、无知之幕、忒修斯之船</div>
       </div>
-      <div class="card">
-        <h3>论证结构图</h3>
-        <p>把观点拆成前提、推论、结论</p >
+      <div class="card" onclick="toggle(this,'tool3')">
+        <div class="fav" onclick="fav(event,'tool3')">⭐</div>
+        <h3>论证结构</h3>
+        <div class="more">前提 → 推论 → 反驳 → 结论</div>
       </div>
-      <div class="card">
+      <div class="card" onclick="toggle(this,'tool4')">
+        <div class="fav" onclick="fav(event,'tool4')">⭐</div>
         <h3>概念辨析</h3>
-        <p>清晰定义，是思考的第一步</p >
+        <div class="more">先验/后验、分析/综合、事实/价值</div>
       </div>
     </div>
   </div>
@@ -297,34 +426,144 @@
 
 <section id="path" class="section">
   <div class="container">
-    <div class="section-title">
-      <h2>思想脉络</h2>
-      <p>从古代到现代，哲学思想的演变路径</p >
-    </div>
-    <div class="grid">
-      <div class="card">
-        <h3>古希腊 · 古典时代</h3>
-        <p>苏格拉底、柏拉图、亚里士多德</p >
-      </div>
-      <div class="card">
-        <h3>中世纪 · 经院哲学</h3>
-        <p>奥古斯丁、阿奎那、奥卡姆</p >
-      </div>
-      <div class="card">
-        <h3>近代 · 理性与启蒙</h3>
-        <p>笛卡尔、休谟、康德、黑格尔</p >
-      </div>
-      <div class="card">
-        <h3>现代 · 语言与存在</h3>
-        <p>尼采、维特根斯坦、海德格尔、萨特</p >
-      </div>
+    <div class="section-title"><h2>思想脉络</h2></div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-date">古希腊</div><div>苏格拉底、柏拉图、亚里士多德</div></div>
+      <div class="timeline-item"><div class="timeline-date">中世纪</div><div>奥古斯丁、阿奎那、奥卡姆</div></div>
+      <div class="timeline-item"><div class="timeline-date">近代</div><div>笛卡尔、休谟、康德、黑格尔</div></div>
+      <div class="timeline-item"><div class="timeline-date">现代</div><div>尼采、维特根斯坦、海德格尔、萨特</div></div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2026 思渊 · 哲学深潜 — 保持怀疑，持续追问</p >
-</footer>
+<footer>© 2026 思渊 · 哲学深潜 — 保持怀疑，持续追问</footer>
 
+<!-- AI 机器人 -->
+<div class="chat">
+  <div class="chat-box" id="chatBox">
+    <div class="msg bot">你好！我是哲学小助手，有什么想问的？</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="输入问题…">
+    <button onclick="sendChat()">发送</button>
+  </div>
+  <button class="chat-btn" onclick="toggleChat()">💬</button>
+</div>
+
+<div id="toTop" onclick="toTop()">↑</div>
+
+<script>
+// 主题切换
+const themeBtn = document.getElementById('themeToggle')
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('light')
+  themeBtn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙'
+})
+
+// 回到顶部
+const toTop = () => window.scrollTo(0,0)
+window.addEventListener('scroll', () => {
+  document.getElementById('toTop').classList.toggle('show', window.scrollY > 400)
+})
+
+// 导航自动高亮
+const sections = document.querySelectorAll('section')
+const navItems = document.querySelectorAll('.nav-item')
+window.addEventListener('scroll', () => {
+  let cur = ''
+  sections.forEach(s => {
+    const top = window.scrollY
+    const off = s.offsetTop - 100
+    const h = s.offsetHeight
+    if (top >= off && top < off + h) cur = s.id
+  })
+  navItems.forEach(i => {
+    i.classList.remove('active')
+    if (i.getAttribute('href').includes(cur)) i.classList.add('active')
+  })
+})
+
+// 卡片展开/收起
+function toggle(el,id) {
+  el.classList.toggle('active')
+  addProgress()
+}
+
+// 搜索
+const search = document.getElementById('search')
+const allItem = document.querySelectorAll('.card, .book-item')
+search.addEventListener('input', e => {
+  const kw = e.target.value.toLowerCase()
+  allItem.forEach(i => {
+    const t = i.textContent.toLowerCase()
+    i.style.display = t.includes(kw) ? '' : 'none'
+  })
+})
+
+// 收藏
+let favs = JSON.parse(localStorage.getItem('favs')) || []
+function fav(e,id) {
+  e.stopPropagation()
+  if (favs.includes(id)) {
+    favs = favs.filter(x => x !== id)
+    e.target.textContent = '⭐'
+  } else {
+    favs.push(id)
+    e.target.textContent = '🌟'
+  }
+  localStorage.setItem('favs', JSON.stringify(favs))
+}
+// 显示收藏
+document.getElementById('showFav').onclick = () => {
+  allItem.forEach(i => {
+    const id = i.getAttribute('onclick')?.match(/'(.+?)'/)?.[1]
+    i.style.display = favs.includes(id) ? '' : 'none'
+  })
+}
+
+// 学习进度
+let readed = JSON.parse(localStorage.getItem('readed')) || []
+function addProgress() {
+  const total = 10
+  readed = [...new Set(readed)]
+  const pct = Math.round((readed.length/total)*100)
+  document.getElementById('fill').style.width = pct + '%'
+  document.getElementById('pct').textContent = pct + '%'
+}
+function read(id) {
+  if (!readed.includes(id)) readed.push(id)
+  localStorage.setItem('readed', JSON.stringify(readed))
+  addProgress()
+}
+window.onload = addProgress
+
+// AI 聊天
+function toggleChat() {
+  document.getElementById('chatBox').classList.toggle('show')
+}
+function sendChat() {
+  const i = document.getElementById('chatInput')
+  const q = i.value.trim()
+  if (!q) return
+  const box = document.getElementById('chatBox')
+  box.innerHTML += `<div class="msg user">${q}</div>`
+  i.value = ''
+
+  // 简单哲学问答
+  let a = '我还在学习中，可以换个问题～'
+  if (/形而上学/.test(q)) a = '形而上学研究：存在、实在、本原、自由意志等根本问题。'
+  if (/认识论/.test(q)) a = '认识论研究：我们如何知道、知识如何可能、怀疑论如何回应。'
+  if (/伦理学/.test(q)) a = '伦理学研究：善恶、对错、应该如何生活、价值的来源。'
+  if (/苏格拉底/.test(q)) a = '苏格拉底：认识你自己，助产术，美德即知识。'
+  if (/柏拉图/.test(q)) a = '柏拉图：理念世界、洞穴喻、理想国、哲学王。'
+  if (/康德/.test(q)) a = '康德：人为自然立法，范畴，纯粹理性批判，义务论。'
+  if (/电车难题/.test(q)) a = '电车难题：牺牲少数拯救多数，考验功利主义与义务论的冲突。'
+
+  setTimeout(() => {
+    box.innerHTML += `<div class="msg bot">${a}</div>`
+    box.scrollTop = box.scrollHeight
+  },600)
+}
+</script>
 </body>
 </html>

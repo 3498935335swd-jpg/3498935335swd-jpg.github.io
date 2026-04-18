@@ -187,7 +187,48 @@ body.light .timeline { border-color: #ddd; }
 }
 .timeline-date { color: #a855f7; font-weight: 600; }
 
-/* AI 聊天 */
+.piano-section {
+  padding: 40px 0;
+  text-align: center;
+}
+.piano {
+  display: flex;
+  justify-content: center;
+  height: 180px;
+  margin-top: 20px;
+  user-select: none;
+}
+.key {
+  width: 44px;
+  height: 100%;
+  border: 1px solid #222;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  position: relative;
+}
+.white {
+  background: #fff;
+  color: #222;
+}
+.black {
+  width: 28px;
+  height: 110px;
+  background: #111;
+  margin: 0 -14px;
+  z-index: 2;
+  color: #fff;
+}
+.key:active {
+  background: #a855f7 !important;
+}
+.key span {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+}
+
 .chat {
   position: fixed;
   bottom: 80px;
@@ -250,7 +291,6 @@ body.light .chat-input input {
   cursor: pointer;
 }
 
-/* 进度 */
 .progress {
   margin: 20px auto;
   max-width: 700px;
@@ -310,11 +350,11 @@ footer {
     <div class="nav-inner">
       <div class="logo">思渊<span>·深潜</span></div>
       <div class="nav-links">
-        <a href=" " class="nav-item active">首页</a >
-        <a href="#classic" class="nav-item">领域</a >
-        <a href="#books" class="nav-item">经典</a >
-        <a href="#tools" class="nav-item">工具</a >
-        <a href="#path" class="nav-item">脉络</a >
+        <a href="#home" class="nav-item active">首页</a>
+        <a href="#classic" class="nav-item">领域</a>
+        <a href="#books" class="nav-item">经典</a>
+        <a href="#tools" class="nav-item">工具</a>
+        <a href="#piano" class="nav-item">钢琴</a>
       </div>
       <button id="themeToggle">🌙</button>
     </div>
@@ -339,10 +379,10 @@ footer {
 <section id="home" class="hero">
   <div class="container">
     <h1>用<span>深度思考</span>对抗浅薄</h1>
-    <p>从苏格拉底到维特根斯坦，从形而上学到心灵哲学 —— 这里没有速成鸡汤，只有严谨论证与清晰地图。</p >
+    <p>从苏格拉底到维特根斯坦，从形而上学到心灵哲学 —— 这里没有速成鸡汤，只有严谨论证与清晰地图。</p>
     <div class="buttons">
-      <a href="#path" class="btn primary">学习路径</a >
-      <a href="#books" class="btn secondary">经典导读</a >
+      <a href="#path" class="btn primary">学习路径</a>
+      <a href="#books" class="btn secondary">经典导读</a>
     </div>
   </div>
 </section>
@@ -354,19 +394,19 @@ footer {
       <div class="card" onclick="toggle(this,'area1')">
         <div class="fav" onclick="fav(event,'area1')">⭐</div>
         <h3>形而上学</h3>
-        <p>存在是什么？实在结构如何？</p >
+        <p>存在是什么？实在结构如何？</p>
         <div class="more">本原、因果、时空、自由意志、实体</div>
       </div>
       <div class="card" onclick="toggle(this,'area2')">
         <div class="fav" onclick="fav(event,'area2')">⭐</div>
         <h3>认识论</h3>
-        <p>我们如何知道？知识边界在哪？</p >
+        <p>我们如何知道？知识边界在哪？</p>
         <div class="more">怀疑论、先验/经验、盖梯尔、证成</div>
       </div>
       <div class="card" onclick="toggle(this,'area3')">
         <div class="fav" onclick="fav(event,'area3')">⭐</div>
         <h3>伦理学</h3>
-        <p>应该如何生活？对错标准是什么？</p >
+        <p>应该如何生活？对错标准是什么？</p>
         <div class="more">功利主义、义务论、德性、电车难题</div>
       </div>
     </div>
@@ -380,17 +420,17 @@ footer {
       <div class="book-item" onclick="read('book1')">
         <div class="fav" onclick="fav(event,'book1')">⭐</div>
         <strong>《理想国》柏拉图</strong>
-        <p>洞穴喻、灵魂三分、哲人王</p >
+        <p>洞穴喻、灵魂三分、哲人王</p>
       </div>
       <div class="book-item" onclick="read('book2')">
         <div class="fav" onclick="fav(event,'book2')">⭐</div>
         <strong>《第一哲学沉思集》笛卡尔</strong>
-        <p>我思故我在、普遍怀疑</p >
+        <p>我思故我在、普遍怀疑</p>
       </div>
       <div class="book-item" onclick="read('book3')">
         <div class="fav" onclick="fav(event,'book3')">⭐</div>
         <strong>《纯粹理性批判》康德</strong>
-        <p>人为自然立法、范畴体系</p >
+        <p>人为自然立法、范畴体系</p>
       </div>
     </div>
   </div>
@@ -424,6 +464,27 @@ footer {
   </div>
 </section>
 
+<section id="piano" class="section piano-section">
+  <div class="container">
+    <div class="section-title"><h2>🎹 哲学钢琴</h2></div>
+    <div class="piano" id="piano">
+      <div class="key white" onclick="play(261.63)"><span>C</span></div>
+      <div class="key black" onclick="play(277.18)"><span>#</span></div>
+      <div class="key white" onclick="play(293.66)"><span>D</span></div>
+      <div class="key black" onclick="play(311.13)"><span>#</span></div>
+      <div class="key white" onclick="play(329.63)"><span>E</span></div>
+      <div class="key white" onclick="play(349.23)"><span>F</span></div>
+      <div class="key black" onclick="play(369.99)"><span>#</span></div>
+      <div class="key white" onclick="play(392.00)"><span>G</span></div>
+      <div class="key black" onclick="play(415.30)"><span>#</span></div>
+      <div class="key white" onclick="play(440.00)"><span>A</span></div>
+      <div class="key black" onclick="play(466.16)"><span>#</span></div>
+      <div class="key white" onclick="play(493.88)"><span>B</span></div>
+      <div class="key white" onclick="play(523.25)"><span>C5</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="path" class="section">
   <div class="container">
     <div class="section-title"><h2>思想脉络</h2></div>
@@ -438,10 +499,9 @@ footer {
 
 <footer>© 2026 思渊 · 哲学深潜 — 保持怀疑，持续追问</footer>
 
-<!-- AI 机器人 -->
 <div class="chat">
   <div class="chat-box" id="chatBox">
-    <div class="msg bot">你好！我是哲学小助手，有什么想问的？</div>
+    <div class="msg bot">你好！我是全能哲学小助手。</div>
   </div>
   <div class="chat-input">
     <input type="text" id="chatInput" placeholder="输入问题…">
@@ -453,20 +513,31 @@ footer {
 <div id="toTop" onclick="toTop()">↑</div>
 
 <script>
-// 主题切换
+function play(freq) {
+  const actx = new (AudioContext || webkitAudioContext)();
+  const o = actx.createOscillator();
+  const g = actx.createGain();
+  o.connect(g);
+  g.connect(actx.destination);
+  o.frequency.value = freq;
+  o.type = "sine";
+  g.gain.value = 0.15;
+  o.start();
+  g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 1.2);
+  o.stop(actx.currentTime + 1.2);
+}
+
 const themeBtn = document.getElementById('themeToggle')
 themeBtn.addEventListener('click', () => {
   document.body.classList.toggle('light')
   themeBtn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙'
 })
 
-// 回到顶部
 const toTop = () => window.scrollTo(0,0)
 window.addEventListener('scroll', () => {
   document.getElementById('toTop').classList.toggle('show', window.scrollY > 400)
 })
 
-// 导航自动高亮
 const sections = document.querySelectorAll('section')
 const navItems = document.querySelectorAll('.nav-item')
 window.addEventListener('scroll', () => {
@@ -483,13 +554,11 @@ window.addEventListener('scroll', () => {
   })
 })
 
-// 卡片展开/收起
 function toggle(el,id) {
   el.classList.toggle('active')
   addProgress()
 }
 
-// 搜索
 const search = document.getElementById('search')
 const allItem = document.querySelectorAll('.card, .book-item')
 search.addEventListener('input', e => {
@@ -500,7 +569,6 @@ search.addEventListener('input', e => {
   })
 })
 
-// 收藏
 let favs = JSON.parse(localStorage.getItem('favs')) || []
 function fav(e,id) {
   e.stopPropagation()
@@ -513,7 +581,6 @@ function fav(e,id) {
   }
   localStorage.setItem('favs', JSON.stringify(favs))
 }
-// 显示收藏
 document.getElementById('showFav').onclick = () => {
   allItem.forEach(i => {
     const id = i.getAttribute('onclick')?.match(/'(.+?)'/)?.[1]
@@ -521,7 +588,6 @@ document.getElementById('showFav').onclick = () => {
   })
 }
 
-// 学习进度
 let readed = JSON.parse(localStorage.getItem('readed')) || []
 function addProgress() {
   const total = 10
@@ -537,32 +603,76 @@ function read(id) {
 }
 window.onload = addProgress
 
-// AI 聊天
 function toggleChat() {
   document.getElementById('chatBox').classList.toggle('show')
 }
+
 function sendChat() {
   const i = document.getElementById('chatInput')
-  const q = i.value.trim()
+  const q = i.value.trim().toLowerCase()
   if (!q) return
   const box = document.getElementById('chatBox')
   box.innerHTML += `<div class="msg user">${q}</div>`
   i.value = ''
 
-  // 简单哲学问答
-  let a = '我还在学习中，可以换个问题～'
-  if (/形而上学/.test(q)) a = '形而上学研究：存在、实在、本原、自由意志等根本问题。'
-  if (/认识论/.test(q)) a = '认识论研究：我们如何知道、知识如何可能、怀疑论如何回应。'
-  if (/伦理学/.test(q)) a = '伦理学研究：善恶、对错、应该如何生活、价值的来源。'
-  if (/苏格拉底/.test(q)) a = '苏格拉底：认识你自己，助产术，美德即知识。'
-  if (/柏拉图/.test(q)) a = '柏拉图：理念世界、洞穴喻、理想国、哲学王。'
-  if (/康德/.test(q)) a = '康德：人为自然立法，范畴，纯粹理性批判，义务论。'
-  if (/电车难题/.test(q)) a = '电车难题：牺牲少数拯救多数，考验功利主义与义务论的冲突。'
+  let a = "我已学习全套哲学知识，你可以问我认识论、形而上学、伦理学、逻辑学、科学哲学、各大哲学家等内容。"
+
+  // ========== 认识论 ==========
+  if (/认识论|知识论/.test(q)) a=`认识论研究：知识是什么、如何可能、何为证成、怀疑论问题。传统定义：知识=证成+真+信念（JTB）。`
+  if (/怀疑论|怀疑主义/.test(q)) a=`怀疑论认为我们无法获得确定知识。笛卡尔：普遍怀疑→我思故我在。休谟：因果只是心理习惯，无必然性。`
+  if (/jtb|知识定义|真信念/.test(q)) a=`传统知识定义JTB：1.你相信它 2.它为真 3.你有合理证成。`
+  if (/盖梯尔/.test(q)) a=`盖梯尔问题通过反例证明：满足JTB不一定是知识，说明传统定义不充分。`
+  if (/经验论|唯理论/.test(q)) a=`经验论：知识来自经验，心灵是白板（洛克、休谟）。唯理论：知识来自理性，存在天赋观念（笛卡尔、莱布尼茨）。`
+  if (/康德|纯粹理性批判/.test(q)) a=`康德调和经验论与唯理论：知识=先天形式+后天经验，人为自然立法，承认先天综合判断。`
+  if (/先验|后验|先天|后天/.test(q)) a=`先验：不依赖经验（逻辑、数学）。后验：依赖经验（科学、观察）。`
+  if (/分析判断|综合判断/.test(q)) a=`分析：谓词包含主词，必然真。综合：扩展知识，依赖经验。康德：存在先天综合判断。`
+  if (/归纳问题|休谟问题/.test(q)) a=`休谟问题：归纳无法被逻辑证成，科学依赖归纳但无绝对确定性。`
+
+  // ========== 形而上学 ==========
+  if (/形而上学/.test(q)) a=`形而上学研究：存在本身、实体、因果、时空、自由意志、必然性、心物关系。`
+  if (/自由意志|决定论/.test(q)) a=`自由意志：人能自主选择。决定论：一切事件被因果必然决定。相容论认为两者可共存。`
+  if (/忒修斯之船/.test(q)) a=`忒修斯之船质疑：零件全换后还是同一艘船吗？考验同一性、本质、整体与部分。`
+  if (/心物问题|二元论|物理主义/.test(q)) a=`心物问题：心灵与物质关系。笛卡尔二元论；物理主义认为心灵只是大脑活动。`
+
+  // ========== 伦理学 ==========
+  if (/伦理学|道德哲学/.test(q)) a=`伦理学研究：善恶、正当、应该如何生活、价值基础。分为元伦理、规范伦理、应用伦理。`
+  if (/功利主义/.test(q)) a=`功利主义：行为正当性在于结果是否实现最大多数人的最大幸福（边沁、密尔）。`
+  if (/义务论|康德伦理学/.test(q)) a=`义务论：行为本身有道德性，与结果无关。绝对命令：只按你愿意成为普遍法则的准则行动。`
+  if (/德性伦理学|亚里士多德/.test(q)) a=`德性伦理关注品格：好行为来自好品格，目标是幸福（eudaimonia）。`
+  if (/电车难题/.test(q)) a=`电车难题：牺牲1人救5人是否正当？考验功利主义与义务论冲突。`
+  if (/无知之幕|罗尔斯/.test(q)) a=`罗尔斯无知之幕：在不知道自身身份下选择正义原则，得出公平分配。`
+
+  // ========== 逻辑学 & 思维工具 ==========
+  if (/逻辑谬误/.test(q)) a=`常见谬误：稻草人、人身攻击、假二分、循环论证、滑坡谬误、诉诸情感、诉诸权威。`
+  if (/论证结构/.test(q)) a=`标准论证：前提→推论→结论。好论证：前提可靠、推理有效、结论成立。`
+  if (/事实与价值|休谟鸿沟/.test(q)) a=`休谟鸿沟：无法从“是”直接推出“应该”，事实判断与价值判断不可直接推导。`
+
+  // ========== 科学哲学 ==========
+  if (/科学哲学/.test(q)) a=`科学哲学研究：科学方法、划界问题、科学实在论、范式、证伪、科学革命。`
+  if (/证伪|波普尔/.test(q)) a=`波普尔：科学不在于可证实，而在于可证伪。不可证伪的不是科学。`
+  if (/范式|库恩/.test(q)) a=`库恩：科学发展不是累积，而是范式更替→常规科学→危机→革命→新范式。`
+  if (/科学实在论|反实在论/.test(q)) a=`实在论：科学理论描述真实世界。反实在论：科学只是有效工具，不承诺实在。`
+
+  // ========== 哲学家 ==========
+  if (/苏格拉底/.test(q)) a=`苏格拉底：认识你自己，助产术（辩证法），美德即知识，因不敬神与败坏青年被处死。`
+  if (/柏拉图/.test(q)) a=`柏拉图：理念世界，洞穴喻，灵魂三分，理想国，哲学王，回忆说。`
+  if (/亚里士多德/.test(q)) a=`亚里士多德：百科全书式，四因说，中庸，德性伦理学，形式与质料，逻辑学奠基。`
+  if (/笛卡尔/.test(q)) a=`近代哲学之父，普遍怀疑，我思故我在，心物二元论，理性主义。`
+  if (/休谟/.test(q)) a=`经验论巅峰，因果怀疑论，归纳问题，是与应当二分，情感主义伦理学。`
+  if (/黑格尔/.test(q)) a=`辩证法，绝对精神，历史理性，存在即合理，深刻影响马克思与存在主义。`
+  if (/尼采/.test(q)) a=`上帝已死，权力意志，超人，永恒轮回，批判传统道德与理性。`
+  if (/维特根斯坦/.test(q)) a=`语言哲学转向。前期：语言图示世界。后期：意义即使用，语言游戏。`
+  if (/海德格尔/.test(q)) a=`存在与时间，此在，被抛，向死而生，技术批判。`
+  if (/萨特|存在主义/.test(q)) a=`存在先于本质，人被判定为自由，懦夫是自己选择成为懦夫。`
+
+  // ========== 思想实验 ==========
+  if (/中文屋|塞尔/.test(q)) a=`中文屋：不懂中文的人可按规则回答，说明计算≠理解，强AI不可能。`
+  if (/缸中之脑/.test(q)) a=`缸中之脑：你如何确定自己不是被连接在机器上的大脑？极端怀疑论场景。`
 
   setTimeout(() => {
     box.innerHTML += `<div class="msg bot">${a}</div>`
     box.scrollTop = box.scrollHeight
-  },600)
+  }, 500)
 }
 </script>
 </body>

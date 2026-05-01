@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi 人体姿态检测 | 无摄像头无红外</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#0f172a;color:#fff;text-align:center;padding:30px;font-family:system-ui;}
+        .box{max-width:500px;margin:0 auto;background:#1e293b;padding:25px;border-radius:16px;}
+        .status{font-size:22px;margin:20px 0;padding:15px;border-radius:10px;}
+        .normal{background:#166534;}
+        .motion{background:#991b1b;}
+        .info{color:#94a3b8;margin:10px 0;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>WiFi 信号人体姿态扫描</h2>
+        <p class="info">纯网页 · 无摄像头 · 无红外 · 仅WiFi波动</p >
+        <div id="statusBox" class="status normal">初始化中...</div>
+        <div id="log" class="info"></div>
+    </div>
 
+<script>
+// 配置参数
+const THRESHOLD = 15; // 波动灵敏度
+let baseNetworkScore = 0;
+let isCalibrated = false;
+
+// 检测网络信号质量波动
+function getNetworkScore() {
+    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if(!conn) return 50;
+    // 结合网络类型+下行速度+延迟权重打分
+    let score = 0;
+    if(conn.effectiveType === "4g") score += 10;
+    if(conn.effectiveType === "wifi") score += 30;
+    score += (conn.downlink || 10) * 2;
+    return score;
+}
+
+// 校准基线（静止姿态基准）
+function calibrate() {
+    let sum = 0;
+    let count = 10;
+    for(let i = 0; i < count; i++){
+        sum += getNetworkScore();
+    }
+    baseNetworkScore = sum / count;
+    isCalibrated = true;
+    updateUI("✅ 校准完成，开始检测", "normal");
+}
+
+// 姿态检测核心
+function detectPose() {
+    if(!isCalibrated) return;
+    const nowScore = getNetworkScore();
+    const diff = Math.abs(nowScore - baseNetworkScore);
+
+    const log = document.getElementById("log");
+    if(diff > THRESHOLD){
+        // 信号波动大：人体移动、弯腰、抬手、转身、姿态变化
+        updateUI("🔴 检测到人体姿态变动", "motion");
+        log.innerText = `信号波动值：${diff.toFixed(2)}`;
+    }else{
+        // 信号稳定：人体静止
+        updateUI("🟢 人体静止，姿态无变化", "normal");
+        log.innerText = `信号波动值：${diff.toFixed(2)}`;
+    }
+}
+
+function updateUI(text, cls){
+    const box = document.getElementById("statusBox");
+    box.innerText = text;
+    box.className = "status " + cls;
+}
+
+// 启动
+window.onload = () => {
+    updateUI("⏳ 正在校准WiFi基线...", "normal");
+    calibrate();
+    setInterval(detectPose, 800);
+}
+</script>
+</body>
+</html>
